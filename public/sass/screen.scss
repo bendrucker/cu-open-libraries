@@ -1,0 +1,92 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+@mixin center {
+	display: block;
+	margin: 0 auto;
+}
+
+html, body {
+	width: 100%;
+	font-size: 26px;
+	line-height: 1.5em;
+}
+
+.content {
+	width: 80%;
+	@include center;
+	font-family: "omnes-pro", sans-serif;
+}
+
+h1 {
+	text-align: center;
+	padding-top: 100px;
+	font-size: 2em;
+}
+
+ul {
+	list-style-type: none;
+}
+
+li {
+	width: 50%;
+	float: left;
+	padding: 15px 0;
+	text-align: center;
+}
+
+.count-1 li {
+	width: 100%;
+}
+
+
+
+p {
+	padding: 0 10px;
+	&.name {
+		font-size: 1.5em;
+		font-weight: 500;
+	}
+	&.until {
+		font-weight: 300;
+		font-size: .5em;
+		color: gray;
+	}
+}
+
+a {
+	color: black;
+	text-decoration: none;
+
+	&:hover {
+		color: gray;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	p.name {
+		font-size: 1em;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	p.name {
+		font-size: .6em;
+	}
+	p.until {
+		font-size: .4em;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	li {
+		float: none;
+		display: block;
+		width: 100%;
+		font-size: 1.5em;
+	}
+}

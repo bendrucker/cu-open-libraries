@@ -1,0 +1,38 @@
+!!! 5
+
+/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+/[if lt IE 7]
+%html.no-js.lt-ie9.lt-ie8.lt-ie7{ lang: "en" }
+/[if IE 7]
+%html.no-js.lt-ie9.lt-ie8{ lang: "en" }
+/[if IE 8]
+%html.no-js.lt-ie9{ lang: "en" }
+-# Consider adding a manifest.appcache: h5bp.com/d/Offline
+<!--[if gt IE 8]><!-->
+%html.no-js{ lang: "en" }
+	<!--<![endif]-->
+	%head
+		%meta{ charset: "utf-8" }
+		%meta{ "http-equiv" => "X-UA-Compatible", content: "IE=edge,chrome=1" }
+		%title Which Columbia Libraries Are Open?
+		%link{:rel => 'stylesheet', :media => 'screen', :href => 'stylesheets/screen.css'}
+		%meta{ name: "description", content: "See what Columbia University libraries are currently open" }
+		%meta{ name: "viewport", content: "width=device-width" }
+	%body
+		.content
+			- if libraries.empty?
+				%h1 Nothing's open right now. Sorry!
+			- else
+				%ul{:class => "count-#{libraries.length}"}
+					-libraries.each do |library|
+						%li
+							%a{:href => library['url']}
+								%p.name= library['name']
+								%p.until
+									- unless library['allday']
+										= "(Until #{library['close']})"
+									- else
+										(24 Hours)	
+		%script{:type => 'text/javascript', :src => '//use.typekit.net/ufx4gsi.js'}
+		:javascript
+			try{Typekit.load();}catch(e){}		
