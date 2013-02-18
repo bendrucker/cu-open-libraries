@@ -1,14 +1,13 @@
 require './constants.rb'
 
 configure :development do
-	conn = Mongo::Connection.new("localhost", 27017)
+	conn = Mongo::MongoClient.new("localhost", 27017)
 	set :mongo, conn.db('libs')['libraries']
 end
 
 configure :production do
-	conn = Mongo::Connection.new(ENV['MONGO_HQ_HOST'], ENV['MONGO_HQ_PORT'])
-	conn.authenticate(ENV['MONGO_HQ_USERNAME'], ENV['MONGO_HQ_PASSWORD'])
-	set :mongo, conn.db('library_hours')['libraries']
+	connection = Mongo::MongoClient.from_uri
+	set :mongo, connection.db('library_hours')['libraries']
 end	
 
 
