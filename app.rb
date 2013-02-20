@@ -8,6 +8,7 @@ end
 configure :production do
 	connection = Mongo::MongoClient.from_uri
 	set :mongo, connection.db('library_hours')['libraries']
+	require 'newrelic_rpm'
 end	
 
 
